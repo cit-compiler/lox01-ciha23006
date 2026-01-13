@@ -101,13 +101,14 @@ class Interpreter implements Expr.Visitor<Object>{
         //Unreachable
         return null;
     }
+    void interpret(Expr expression) {
+        try {
+            Object value = evaluate(expression);
+            System.out.println(stringify(value));
+        } catch (RuntimeError error) {
+            Lox.runtimeError(error);
+        }
+    }
+
 }
 
-void interpret(Expr expression) {
-    try {
-        Object value = evaluate(expression);
-        System.out.println(stringify(value));
-    } catch (RuntimeError error) {
-        Lox.runtimeerror(error);
-    }
-}
